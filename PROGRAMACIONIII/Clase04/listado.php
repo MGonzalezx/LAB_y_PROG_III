@@ -1,4 +1,4 @@
-<?php   
+<?php
 /*Aplicación No 21 ( Listado CSV y array de usuarios)
 Archivo: listado.php
 método:GET
@@ -12,21 +12,22 @@ Retorna los datos que contiene ese array en una lista
 <li>Tea</li>
 <li>Milk</li>
 </ul>
-Hacer los métodos necesarios en la clase usuario*/ 
+Hacer los métodos necesarios en la clase usuario*/
 
 include "usuario.php";
+class Listado
+{
 
-$array = array();
+    public static function MostrarListado($archivo){
+        $arrayUsuarios = Usuario::Leer($archivo);
 
-$array = Usuario::Leer("usuarios.csv");
+        foreach ($arrayUsuarios as $value) {
+           echo "<ul> <br>";
+           echo "<li>",  $value->GetNombre(), "</li>";
+           echo "<li>",  $value->GetClave(), "</li>";
+           echo "<li>",  $value->GetEmail(), "</li>";
+           echo "</ul> <br>";
+        }
+    }
 
-
-for($i = 0; $i < count($array); $i++){
-    echo "<ul>";
-    echo "<li>".var_export($array[$i])."</li>";
-    echo "</ul>";
 }
-
-
-
-?>

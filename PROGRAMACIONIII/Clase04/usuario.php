@@ -15,6 +15,20 @@ public function __construct($nombre = "", $clave = "", $email = "")
       
 }
 
+public function GetNombre(){
+    return $this->_nombre;
+}
+
+public function GetClave(){
+    return $this->_clave;
+}
+
+public function GetEmail(){
+    return $this->_email;
+}
+
+
+
 public function MostrarUsuario(){
 
      return "Nombre: ".$this->_nombre. " - " ."Clave: ".$this->_clave. " - "." E-Mail: ".$this->_email .",". PHP_EOL ;
@@ -54,16 +68,23 @@ public static function Leer($archivo){
         while(!feof($miArchivo)){
 
 
-            $archAux = fgets($miArchivo);
-			$usuarios = explode(" - ", $archAux);
+			/*$usuarios = explode(" - ", fgets($miArchivo));
 			//http://www.w3schools.com/php/func_string_explode.asp
 			$usuarios[0] = trim($usuarios[0]);
 			if($usuarios[0] != ""){
 				$retorno[] = new Usuario($usuarios[0], $usuarios[1], $usuarios[2]);
-			}
+			}*/
+
+            $usuarios = explode(" - ", fgets($miArchivo));
+            //echo $elemento[0] . " - " . $elemento[1] . "\r\n";
+            if(isset($usuarios[1])){
+                $p = new Usuario($usuarios[0], $usuarios[1], $usuarios[2]);
+                array_push($retorno, $p);
 
         }
+    }
         fclose($miArchivo);
+        return $retorno;
     }else{
         echo "El archivo no existe";
     }
@@ -73,7 +94,7 @@ public static function Leer($archivo){
 
     
 
-    return $retorno;
+   
 }
 
 public function VerificarClaveYEmail($clave,$email){

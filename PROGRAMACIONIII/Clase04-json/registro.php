@@ -1,5 +1,5 @@
 <?php
-/*
+/*Martin Gonzalez
 Aplicación No 23 (Registro JSON)
 Archivo: registro.php
 método:POST
@@ -13,22 +13,19 @@ retorna si se pudo agregar o no.
 Cada usuario se agrega en un renglón diferente al anterior.
 Hacer los métodos necesarios en la clase usuario.
 
-
-*/ 
-
+*/
 include "usuario.php";
+class Registro
+{
 
-echo $_POST['nombre'].' '.$_POST['clave']. ' '. $_POST['email'];
+    public static function RecibidorDatos($nombre,$clave,$email)
+    {
+        
+        $miUsuario = new Usuario(rand(1,10000),$nombre,  $clave, $email, date("c"),"");
 
-$fechaRegistro = date("r");
+        //Usuario::Alta($miUsuario);
+        //$miUsuario->GuardarJson();
 
-$miUsuario = new Usuario($_POST['nombre'],$_POST['clave'],$_POST['email']);
-
-
-
-Usuario::Alta($miUsuario);
-
-?>
-
-
-*
+        return $miUsuario;
+    }
+}

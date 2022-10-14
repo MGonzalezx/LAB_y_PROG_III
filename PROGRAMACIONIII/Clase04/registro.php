@@ -11,17 +11,16 @@ Cada usuario se agrega en un renglón diferente al anterior.
 Hacer los métodos necesarios en la clase usuario
 
 
-*/ 
-
+*/
 include "usuario.php";
+class Registro
+{
 
-echo $_POST['nombre'].' '.$_POST['clave']. ' '. $_POST['email'];
+    public static function RecibidorDatos($nombre,$clave,$email)
+    {
+        
+        $miUsuario = new Usuario($nombre, $clave, $email);
 
-
-$miUsuario = new Usuario($_POST['nombre'],$_POST['clave'],$_POST['email']);
-
-
-
-Usuario::Alta($miUsuario);
-
-?>
+        Usuario::Alta($miUsuario);
+    }
+}
